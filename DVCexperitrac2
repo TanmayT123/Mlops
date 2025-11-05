@@ -55,3 +55,5 @@ Keep a record of all experiments.
 Compare different runs to choose the best model.
 Make results reproducible.
 Share and collaborate with other team members.
+
+python -m mlflow ui
