@@ -1,0 +1,45 @@
+cd Desktop
+mkdir DVC_Practical
+cd DVC_Practical
+
+
+git init
+dvc init
+
+put in data.csv
+name,age,city
+Tanmay,21,Pune
+Rudra,22,Mumbai
+Ayush,20,Nashik
+
+dvc add data.csv
+
+git add data.csv.dvc .gitignore .dvc/config
+git commit -m "Added dataset version 1"
+
+name,age,city
+Tanmay,21,Pune
+Rudra,22,Mumbai
+Ayush,20,Nashik
+Om,23,Delhi
+
+dvc add data.csv
+
+git add data.csv.dvc
+git commit -m "Added dataset version 2 (added Om)"
+
+git diff HEAD~1 data.csv.dvc
+git checkout HEAD~1 data.csv.dvc
+dvc checkout
+  
+git checkout main
+dvc checkout
+
+
+
+
+
+
+
+
+
