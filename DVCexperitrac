@@ -43,3 +43,15 @@ with mlflow.start_run(run_name="simple_experiment"):
     mlflow.log_artifact("output.txt")
 
 print("\n✅ Experiment tracking complete! Check MLflow UI at http://127.0.0.1:5000")
+
+
+
+Experiment tracking is the process of recording and managing all the details of machine learning experiments — such as parameters, metrics, models, and output files — to make it easy to reproduce results, compare experiments, and improve model performance systematically.
+
+In machine learning projects, we often try different algorithms, hyperparameters, and datasets. Without tracking, it becomes difficult to know which combination performed best.
+MLflow provides an efficient way to automatically log and visualize this information.
+
+Keep a record of all experiments.
+Compare different runs to choose the best model.
+Make results reproducible.
+Share and collaborate with other team members.
