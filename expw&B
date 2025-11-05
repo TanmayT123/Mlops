@@ -1,0 +1,74 @@
+⚙️ Steps to implement (EASY practical version)
+1️⃣ Install and log in
+pip install wandb
+wandb login
+
+
+(You’ll get an API key from your W&B account after signup.)
+
+2️⃣ Add W&B to your training script
+
+Example: train.py
+
+import wandb
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+# Step 1: Initialize W&B project
+wandb.init(project="iris-classification", name="rf-baseline")
+
+# Step 2: Log hyperparameters
+config = {
+    "n_estimators": 100,
+    "max_depth": 3,
+    "test_size": 0.2,
+}
+wandb.config.update(config)
+
+# Step 3: Load data
+iris = load_iris()
+X_train, X_test, y_train, y_test = train_test_split(
+    iris.data, iris.target, test_size=config["test_size"], random_state=42
+)
+
+# Step 4: Train model
+model = RandomForestClassifier(
+    n_estimators=config["n_estimators"], max_depth=config["max_depth"], random_state=42
+)
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+# Step 5: Log metrics
+acc = accuracy_score(y_test, y_pred)
+wandb.log({"accuracy": acc})
+
+print(f"Accuracy: {acc}")
+
+3️⃣ Run the script
+python train.py
+
+
+You’ll see:
+
+Training metrics appear live on your W&B dashboard.
+
+Each run gets saved with all hyperparameters and metrics.
+
+4️⃣ View results
+
+Go to https://wandb.ai
+ → Your Project → “iris-classification”
+You’ll see:
+
+Graphs of metrics (accuracy, loss, etc.)
+
+Comparison between multiple runs (if you change parameters)
+
+🧩 Optional (for bonus marks)
+
+Run it multiple times with different parameters:
+
+wandb.init(project="iris-classification", name="rf-depth-5")
+wandb.config.update({"n_estimators": 200, "max_depth": 5})
